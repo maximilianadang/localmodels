@@ -6,6 +6,25 @@ Containerized deployment of Ollama and Open WebUI for running local LLMs with a 
 
 ---
 
+## TL;DR - Quick Reference
+
+```bash
+# First time setup
+./docker-deploy.sh           # Start containers
+./docker-pull-models.sh      # Download all models
+
+# Daily use
+./status.sh                  # Check if running
+./docker-stop.sh             # Stop containers
+./docker-restart.sh          # Restart containers
+
+# Access
+http://localhost:8080        # Open WebUI
+http://localhost:11434       # Ollama API
+```
+
+---
+
 ## Quick Start
 
 ### Prerequisites
@@ -64,8 +83,11 @@ cd workspaces
 ## Files
 
 - **docker-compose.yml** - Service definitions (Ollama + Open WebUI)
-- **docker-deploy.sh** - Automated deployment script
+- **docker-deploy.sh** - Start containers
+- **docker-stop.sh** - Stop containers
+- **docker-restart.sh** - Restart containers
 - **docker-pull-models.sh** - Bulk model downloader (7 models)
+- **status.sh** - Check container and service status
 - **.notes/** - Local documentation (not tracked in git)
 
 ---
@@ -95,10 +117,18 @@ The `docker-pull-models.sh` script pulls these models:
 
 ### Management Commands
 
+**Using Scripts (Recommended):**
+```bash
+./docker-deploy.sh      # Start containers
+./docker-stop.sh        # Stop containers (preserves data)
+./docker-restart.sh     # Restart containers
+./status.sh             # Check container and service status
+./docker-pull-models.sh # Pull all 7 models
+```
+
+**Manual Commands:**
 ```bash
 # Start services
-./docker-deploy.sh
-# or manually:
 docker compose up -d    # or: podman compose up -d
 
 # Stop services
@@ -116,6 +146,20 @@ docker compose down
 
 # Remove everything including data (DESTRUCTIVE)
 docker compose down -v
+```
+
+**Status Checks:**
+```bash
+# Quick status
+./status.sh
+
+# Container status
+docker ps                        # or: podman ps
+docker compose ps
+
+# Service health
+curl http://localhost:11434/api/tags  # Ollama API
+curl http://localhost:8080            # Open WebUI
 ```
 
 ### Model Management
