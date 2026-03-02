@@ -31,9 +31,9 @@ if [ ! -f "docker-compose.yml" ]; then
     exit 1
 fi
 
-# Stop containers (specify project to ensure we stop the right ones)
+# Stop containers
 echo "→ Stopping services..."
-$CMD compose -p workspaces stop
+$CMD compose stop
 
 echo ""
 echo "✅ Containers stopped"

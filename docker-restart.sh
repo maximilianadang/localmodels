@@ -33,7 +33,7 @@ fi
 
 # Restart containers
 echo "→ Restarting services..."
-$CMD compose -p workspaces restart
+$CMD compose restart
 
 echo ""
 echo "⏳ Waiting for services to start..."

@@ -36,33 +36,33 @@ fi
 
 # Start services
 echo "→ Starting services with Docker Compose..."
-$CONTAINER_CMD compose -p workspaces up -d
+$CONTAINER_CMD compose up -d
 
 echo ""
 echo "⏳ Waiting for services to start..."
 sleep 5
 
 # Check if services are running
-if $CONTAINER_CMD compose -p workspaces ps | grep -q "ollama.*Up"; then
+if $CONTAINER_CMD compose ps | grep -q "ollama.*Up"; then
     echo "✓ Ollama container running"
 else
     echo "❌ Ollama container failed to start"
-    $CONTAINER_CMD compose -p workspaces logs ollama
+    $CONTAINER_CMD compose logs ollama
     exit 1
 fi
 
-if $CONTAINER_CMD compose -p workspaces ps | grep -q "open-webui.*Up"; then
+if $CONTAINER_CMD compose ps | grep -q "open-webui.*Up"; then
     echo "✓ Open WebUI container running"
 else
     echo "❌ Open WebUI container failed to start"
-    $CONTAINER_CMD compose -p workspaces logs open-webui
+    $CONTAINER_CMD compose logs open-webui
     exit 1
 fi
 
 echo ""
 echo "📊 Service Status:"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-$CONTAINER_CMD compose -p workspaces ps
+$CONTAINER_CMD compose ps
 
 echo ""
 echo "📝 Next Steps:"
@@ -77,8 +77,8 @@ echo "3. Or pull all models at once:"
 echo "   ./docker-pull-models.sh"
 echo ""
 echo "💡 Useful commands:"
-echo "  • View logs: $CONTAINER_CMD compose -p workspaces logs -f"
-echo "  • Stop services: $CONTAINER_CMD compose -p workspaces stop"
-echo "  • Restart: $CONTAINER_CMD compose -p workspaces restart"
-echo "  • Remove (keeps data): $CONTAINER_CMD compose -p workspaces down"
+echo "  • View logs: $CONTAINER_CMD compose logs -f"
+echo "  • Stop services: $CONTAINER_CMD compose stop"
+echo "  • Restart: $CONTAINER_CMD compose restart"
+echo "  • Remove (keeps data): $CONTAINER_CMD compose down"
 echo ""
