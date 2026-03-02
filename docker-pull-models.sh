@@ -20,12 +20,11 @@ echo ""
 # Array of models to pull
 models=(
     "gemma2:2b"
-    "deepseek-r1:14b"
-    "phi4:14b"
-    "qwen2.5-coder:14b"
-    "starcoder2:15b"
-    "qwen3:14b"
     "gemma3:12b"
+    "qwen3.5:0.8b"
+    "qwen3.5:2b"
+    "qwen3.5:4b"
+    "qwen3.5:9b"
 )
 
 total=${#models[@]}
