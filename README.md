@@ -258,6 +258,26 @@ ssh user@server
 # http://server-ip:8080
 ```
 
+### Remote Access via SSH Tunnel
+
+If the server's port 8080 is not exposed (e.g., firewall restrictions), use SSH port forwarding to access Open WebUI from your local machine:
+
+```bash
+# From your local machine, forward local port 8080 to the server's port 8080
+ssh -L 8080:localhost:8080 user@server
+
+# Then open in your local browser
+# http://localhost:8080
+```
+
+If local port 8080 is already in use, map to a different port:
+```bash
+ssh -L 3000:localhost:8080 user@server
+# Access at http://localhost:3000
+```
+
+To add port forwarding to an existing SSH session, type `~C` at a blank prompt to open the SSH escape command line, then enter `-L 8080:localhost:8080`.
+
 ### Behind Reverse Proxy (Production)
 
 Example NGINX config:
