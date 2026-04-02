@@ -16,7 +16,7 @@ echo ""
 
 # Send a request with a tool definition
 curl -s http://localhost:11434/api/chat -d '{
-  "model": "qwen2.5-coder:14b",
+  "model": "qwen3-coder",
   "messages": [
     {
       "role": "user",

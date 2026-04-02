@@ -21,6 +21,7 @@ echo ""
 models=(
     "gemma2:2b"
     "gemma3:12b"
+    "qwen3-coder"
     "qwen3.5:0.8b"
     "qwen3.5:2b"
     "qwen3.5:4b"

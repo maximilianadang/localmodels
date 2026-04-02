@@ -86,7 +86,8 @@ cd workspaces
 - **docker-deploy.sh** - Start containers
 - **docker-stop.sh** - Stop containers
 - **docker-restart.sh** - Restart containers
-- **docker-pull-models.sh** - Bulk model downloader (7 models)
+- **docker-pull-models.sh** - Bulk model downloader
+- **model-advisor.sh** - Check GPU/RAM and see which models fit
 - **status.sh** - Check container and service status
 - **.notes/** - Local documentation (not tracked in git)
 
@@ -96,20 +97,16 @@ cd workspaces
 
 The `docker-pull-models.sh` script pulls these models:
 
-### Coding (18.1 GB)
-- `starcoder2:15b` - Code completion expert
-- `qwen2.5-coder:14b` - Instruction-following coder
+### Coding
+- `qwen3-coder` - Code-specialized MoE model (30B total, 3B active)
 
-### Reasoning (18.1 GB)
-- `deepseek-r1:14b` - Chain-of-thought specialist
-- `phi4:14b` - Microsoft's reasoning model
-
-### General (19.0 GB)
-- `qwen3:14b` - Orchestration and agentic tasks
+### General
+- `qwen3.5:9b` - Flagship general-purpose model (256K context, native tool calling)
+- `qwen3.5:4b` - Mid-size general-purpose model
+- `qwen3.5:2b` - Lightweight general-purpose model
+- `qwen3.5:0.8b` - Ultra-light model for fast inference
 - `gemma3:12b` - Balanced general-purpose model
 - `gemma2:2b` - Small, fast model
-
-**Total**: ~55 GB
 
 ---
 
@@ -123,7 +120,7 @@ The `docker-pull-models.sh` script pulls these models:
 ./docker-stop.sh        # Stop containers (preserves data)
 ./docker-restart.sh     # Restart containers
 ./status.sh             # Check container and service status
-./docker-pull-models.sh # Pull all 7 models
+./docker-pull-models.sh # Pull all models
 ```
 
 **Manual Commands:**
@@ -205,7 +202,7 @@ curl http://localhost:11434/api/tags
 
 All data is stored in Docker/Podman volumes:
 
-- **ollama-data** - Model files (~55 GB for full collection)
+- **ollama-data** - Model files
 - **open-webui-data** - User accounts, chats, documents
 
 ### Backup

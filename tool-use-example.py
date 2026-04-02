@@ -69,7 +69,7 @@ FUNCTION_MAP = {
     "calculate": calculate
 }
 
-def call_ollama(messages, model="qwen2.5-coder:14b", tools=None):
+def call_ollama(messages, model="qwen3-coder", tools=None):
     """Call Ollama API with messages and optional tools"""
     payload = {
         "model": model,
@@ -93,7 +93,7 @@ def execute_tool_call(tool_call):
     else:
         return json.dumps({"error": f"Unknown function: {function_name}"})
 
-def chat_with_tools(user_message, model="qwen2.5-coder:14b"):
+def chat_with_tools(user_message, model="qwen3-coder"):
     """
     Chat with the model, allowing it to use tools
     """
